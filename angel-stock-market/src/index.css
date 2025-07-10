@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply backdrop-blur-md bg-black/10 border border-white/10;
+  }
+  
+  .gradient-bg {
+    background: linear-gradient(
+      135deg,
+      rgba(99, 102, 241, 0.1) 0%,
+      rgba(219, 234, 254, 0.1) 25%,
+      rgba(147, 197, 253, 0.1) 50%,
+      rgba(96, 165, 250, 0.1) 75%,
+      rgba(59, 130, 246, 0.1) 100%
+    );
+  }
+  
+  .gradient-bg-dark {
+    background: linear-gradient(
+      135deg,
+      rgba(31, 41, 55, 0.9) 0%,
+      rgba(17, 24, 39, 0.9) 25%,
+      rgba(31, 41, 55, 0.9) 50%,
+      rgba(17, 24, 39, 0.9) 75%,
+      rgba(31, 41, 55, 0.9) 100%
+    );
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
+  }
+  
+  .btn-secondary {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 text-gray-800 dark:text-white font-semibold py-3 px-6 rounded-lg hover:bg-white/20 transition-all duration-300;
+  }
+  
+  .card-glass {
+    @apply backdrop-blur-lg bg-white/80 dark:bg-gray-900/80 border border-white/20 dark:border-gray-700/50 rounded-xl shadow-xl;
+  }
+  
+  .nav-glass {
+    @apply backdrop-blur-lg bg-white/90 dark:bg-gray-900/90 border-b border-white/20 dark:border-gray-700/50;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+  
+  .hover-glow {
+    @apply hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300;
+  }
+  
+  .stock-up {
+    @apply text-green-500 bg-green-50 dark:bg-green-900/20;
+  }
+  
+  .stock-down {
+    @apply text-red-500 bg-red-50 dark:bg-red-900/20;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
