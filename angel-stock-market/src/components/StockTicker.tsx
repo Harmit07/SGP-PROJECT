@@ -1,14 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, TrendingDown } from 'lucide-react';
-import { mockStocks, marketIndices } from '../data/mockData';
+import { marketDataService, INDIAN_STOCKS } from '../services/marketDataService';
+import { Stock } from '../types';
+
+interface TickerStock {
+  symbol: string;
+  price: number;
+  change: number;
+  changePercent: number;
+}
 
 const StockTicker: React.FC = () => {
-  const allStocks = [...marketIndices.map(index => ({
-    ...index,
-    symbol: index.name,
-    price: index.value
-  })), ...mockStocks];
+  const [allStocks, setAllStocks] = useState<TickerStock[]>([]);
+
+  useEffect(() => {
+    const updateTickerData = async () => {
+      // Get market indices
+      const indices = await marketDataService.fetchMarketIndices();
+      const indicesForTicker = indices.map(index => ({
+        symbol: index.name,
+        price: index.value,
+        change: index.change,
+        changePercent: index.changePercent
+      }));
+
+      // Get top movers for ticker
+      const topMovers = marketDataService.getTopMovers();
+      const stocksForTicker = [...topMovers.gainers, ...topMovers.losers].slice(0, 6).map(stock => ({
+        symbol: stock.symbol,
+        price: stock.price,
+        change: stock.change,
+        changePercent: stock.changePercent
+      }));
+
+      setAllStocks([...indicesForTicker, ...stocksForTicker]);
+    };
+
+    // Initial load
+    updateTickerData();
+
+    // Update every 5 seconds
+    const interval = setInterval(updateTickerData, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const formatNumber = (num: number) => {
     if (num >= 1000000000) {

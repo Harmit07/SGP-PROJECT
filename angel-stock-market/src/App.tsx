@@ -8,6 +8,8 @@ import Testimonials from './components/Testimonials';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import LoginModal from './components/LoginModal';
+import AIAgentDashboard from './components/AIAgentDashboard';
+import RealTimeMarketData from './components/RealTimeMarketData';
 
 function App() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -30,6 +32,16 @@ function App() {
         
         {/* Trading Chart Section */}
         <TradingChart />
+        
+        {/* Real-Time Market Data */}
+        <div id="live-data">
+          <RealTimeMarketData />
+        </div>
+        
+        {/* AI Agent Dashboard */}
+        <div id="ai-agent">
+          <AIAgentDashboard />
+        </div>
         
         {/* Features Section */}
         <Features />

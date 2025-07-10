@@ -27,6 +27,8 @@ const Header: React.FC<HeaderProps> = ({ onLoginClick }) => {
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'Markets', href: '#markets' },
+    { name: 'Live Data', href: '#live-data' },
+    { name: 'AI Agent', href: '#ai-agent' },
     { name: 'Trading', href: '#trading' },
     { name: 'Research', href: '#research' },
     { name: 'About', href: '#about' },
