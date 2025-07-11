@@ -1,10 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  TrendingUp, 
-  BarChart3, 
-  Shield, 
-  Zap, 
+import { motion, Variants, Transition } from 'framer-motion';
+import {
+  TrendingUp,
+  BarChart3,
+  Shield,
+  Zap,
   ArrowRight,
   Star,
   Users,
@@ -29,7 +29,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStartedClick }) => {
     { label: 'Trust Rating', value: '4.9/5', icon: Star },
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -40,16 +40,18 @@ const Hero: React.FC<HeroProps> = ({ onGetStartedClick }) => {
     }
   };
 
-  const itemVariants = {
+  const springTransition: Transition = {
+    type: "spring",
+    stiffness: 300,
+    damping: 24
+  };
+
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 24
-      }
+      transition: springTransition
     }
   };
 
@@ -57,9 +59,12 @@ const Hero: React.FC<HeroProps> = ({ onGetStartedClick }) => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated background */}
       <div className="absolute inset-0 gradient-bg dark:gradient-bg-dark">
-        <div className="absolute inset-0 opacity-40" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+        <div
+          className="absolute inset-0 opacity-40"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }}
+        ></div>
       </div>
 
       {/* Floating elements */}
@@ -72,11 +77,11 @@ const Hero: React.FC<HeroProps> = ({ onGetStartedClick }) => {
             top: `${20 + index * 15}%`,
           }}
           initial={{ opacity: 0, scale: 0 }}
-          animate={{ 
-            opacity: 1, 
+          animate={{
+            opacity: 1,
             scale: 1,
             y: [0, -20, 0],
-            rotate: [0, 360]
+            rotate: [0, 360],
           }}
           transition={{
             delay: element.delay,
@@ -84,13 +89,13 @@ const Hero: React.FC<HeroProps> = ({ onGetStartedClick }) => {
             y: {
               duration: 4,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: 'easeInOut',
             },
             rotate: {
               duration: 8,
               repeat: Infinity,
-              ease: "linear"
-            }
+              ease: 'linear',
+            },
           }}
         >
           <element.icon className="w-8 h-8" />
@@ -106,7 +111,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStartedClick }) => {
         >
           {/* Main heading */}
           <motion.div variants={itemVariants} className="space-y-4">
-            <motion.h1 
+            <motion.h1
               className="text-4xl md:text-6xl lg:text-7xl font-bold"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -118,23 +123,20 @@ const Hero: React.FC<HeroProps> = ({ onGetStartedClick }) => {
               <span className="text-gray-900 dark:text-white">Invest</span>{' '}
               <span className="text-gradient">Better</span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Experience the future of stock trading with Angel Stock Market. 
+              Experience the future of stock trading with Angel Stock Market.
               Real-time analytics, AI-powered insights, and seamless execution.
             </motion.p>
           </motion.div>
 
           {/* CTA Buttons */}
-          <motion.div 
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <motion.button
               onClick={onGetStartedClick}
               className="btn-primary group flex items-center space-x-2"
@@ -144,7 +146,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStartedClick }) => {
               <span>Start Trading</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
             </motion.button>
-            
+
             <motion.button
               className="btn-secondary group flex items-center space-x-2"
               whileHover={{ scale: 1.05 }}
@@ -156,10 +158,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStartedClick }) => {
           </motion.div>
 
           {/* Stats */}
-          <motion.div 
-            variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-16"
-          >
+          <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-16">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -177,23 +176,18 @@ const Hero: React.FC<HeroProps> = ({ onGetStartedClick }) => {
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                   {stat.value}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  {stat.label}
-                </p>
+                <p className="text-gray-600 dark:text-gray-400">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>
 
           {/* Feature highlights */}
-          <motion.div 
-            variants={itemVariants}
-            className="flex flex-wrap justify-center gap-4 mt-12"
-          >
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4 mt-12">
             {[
               'Zero Brokerage on Equity Delivery',
               'Advanced Charting Tools',
               'Real-time Market Data',
-              'Mobile Trading App'
+              'Mobile Trading App',
             ].map((feature, index) => (
               <motion.div
                 key={feature}
