@@ -137,8 +137,8 @@ const Toggle: React.FC<{ checked?: boolean; onChange?: (v: boolean) => void; var
 };
 
 const SectionHeader: React.FC<{ title: string; onBack?: () => void }> = ({ title, onBack }) => (
-  <div className="mb-6">
-    <div className="grid grid-cols-3 items-center">
+  <div className="mb-2">
+    <div className="grid grid-cols-3 items-center px-2">
       <div className="flex items-center">
         <button
           onClick={onBack}
@@ -198,8 +198,8 @@ const TenantPayment: React.FC = () => {
 
   return (
     <div className="w-full flex justify-center">
-      <div className="w-full max-w-[1090px] mx-auto px-2 md:px-0 text-left">
-        <div className="py-6">
+      <div className="w-full max-w-[720px] mx-auto px-3 md:px-0 text-left">
+        <div className="py-6 rounded-lg border border-gray-200 bg-white">
           {active === "autoPay" && <AutoPaySection sample={data} onNext={goNext} onBack={goBack} />}
           {active === "payMyShare" && (
             <PayMyShareSection sample={data} paymentMethods={paymentMethods} onChange={changePaymentMethod} onNext={goNext} onBack={goBack} />
@@ -227,24 +227,23 @@ const AutoPaySection: React.FC<{ sample: SampleDataType; onNext: () => void; onB
       <SectionHeader title="Set Auto Pay" onBack={onBack} />
 
       {/* Transaction */}
-      <div className="bg-white rounded-lg border border-gray-100 p-6 mb-6">
-        <div className="text-sm font-medium text-gray-600 mb-3">Transaction</div>
+      <div className="bg-white rounded-md border border-gray-200 px-5 py-4 mb-4">
+        <div className="text-sm font-medium text-gray-600 mb-2">Transaction</div>
 
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="w-20 h-24 bg-black rounded-md text-white flex flex-col items-center justify-center">
-              <div className="text-lg font-bold">{day}</div>
-              <div className="text-xs mt-1">{monthText}</div>
-              <div className="text-xs mt-1">{year}</div>
+            <div className="w-[54px] h-[66px] bg-black rounded-[6px] text-white flex flex-col items-center justify-center">
+              <div className="text-lg font-bold leading-none">{day}</div>
+              <div className="text-[10px] mt-1 leading-tight">{monthText} {year}</div>
             </div>
 
             <div>
               <div className="text-sm text-gray-700">Rent Amount</div>
               <div className="flex items-baseline gap-1">
-                <span className="text-2xl font-semibold text-red-600">{sample.rentAmount}</span>
-                <span className="text-sm font-medium text-gray-700">{sample.rentCycle}</span>
+                <span className="text-[22px] leading-none font-semibold text-red-600">{sample.rentAmount}</span>
+                <span className="text-sm font-medium text-gray-700">/Jan</span>
               </div>
-              <div className="text-sm text-gray-600 mt-1">Due Date • {sample.dueDayText}</div>
+              <div className="text-sm text-gray-600 mt-1">{sample.dueDayText}</div>
             </div>
           </div>
 
@@ -262,8 +261,8 @@ const AutoPaySection: React.FC<{ sample: SampleDataType; onNext: () => void; onB
       </div>
 
       {/* Permission */}
-      <div className="bg-white rounded-md border border-gray-100 p-4 mb-4">
-        <div className="text-sm font-medium text-gray-600 mb-3">Permission</div>
+      <div className="bg-white rounded-md border border-gray-200 px-5 py-3 mb-3">
+        <div className="text-sm font-medium text-gray-600 mb-2">Permission</div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <IconBubble size={44}>
@@ -276,8 +275,8 @@ const AutoPaySection: React.FC<{ sample: SampleDataType; onNext: () => void; onB
       </div>
 
       {/* Payment Reminders */}
-      <div className="bg-white rounded-md border border-gray-100 p-4 mb-4">
-        <div className="text-sm font-medium text-gray-600 mb-3">Payment Reminders</div>
+      <div className="bg-white rounded-md border border-gray-200 px-5 py-3 mb-3">
+        <div className="text-sm font-medium text-gray-600 mb-2">Payment Reminders</div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <IconBubble size={44}>
@@ -290,8 +289,8 @@ const AutoPaySection: React.FC<{ sample: SampleDataType; onNext: () => void; onB
       </div>
 
       {/* Notification Options */}
-      <div className="bg-white rounded-md border border-gray-100 p-4 mb-6">
-        <div className="text-sm font-medium text-gray-600 mb-3">Notification Options</div>
+      <div className="bg-white rounded-md border border-gray-200 px-5 py-3 mb-5">
+        <div className="text-sm font-medium text-gray-600 mb-2">Notification Options</div>
 
         <div className="space-y-4">
           <div className="flex items-center justify-between">
@@ -326,7 +325,7 @@ const AutoPaySection: React.FC<{ sample: SampleDataType; onNext: () => void; onB
         </div>
       </div>
 
-      <div className="mb-2">
+      <div className="mt-6">
         <RedButton onClick={onNext}>Save Settings</RedButton>
       </div>
     </section>
@@ -357,10 +356,10 @@ const PayMyShareSection: React.FC<{
     <section>
       <SectionHeader title="Manage Rent Split" onBack={onBack} />
 
-      <div className="text-sm text-gray-700 mb-2">Rent Payment</div>
+      <div className="text-sm text-gray-700 mb-2 px-1">Rent Payment</div>
 
       {/* My Share pill */}
-      <div className="bg-white rounded-md border border-red-200 p-2 mb-6">
+      <div className="bg-white rounded-md border border-red-200 px-3 py-2 mb-5">
         <div className="flex items-center justify-between px-2 py-2 rounded-md border border-red-200">
           <div className="flex items-center gap-3">
             {primaryTenant?.avatarUrl ? (
@@ -376,15 +375,15 @@ const PayMyShareSection: React.FC<{
         </div>
       </div>
 
-      <div className="text-sm font-semibold text-gray-800 mb-3">Select Payment Method</div>
+      <div className="text-sm font-semibold text-gray-800 mb-2 px-1">Select Payment Method</div>
 
-      <div className="bg-white rounded-md border border-gray-100 mb-6">
+      <div className="bg-white rounded-md border border-gray-200 mb-5">
         {paymentMethods.map((m, i) => (
           <div key={m.id} className={`${i > 0 ? "border-t border-gray-100" : ""}`}>
-            <div
-              onClick={() => choose(m.id)}
-              className="flex items-center justify-between p-4 cursor-pointer"
-            >
+                          <div
+                onClick={() => choose(m.id)}
+                className="flex items-center justify-between px-4 py-3 cursor-pointer"
+              >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: ICON_BG }}>
                   {m.icon}
@@ -401,7 +400,7 @@ const PayMyShareSection: React.FC<{
         ))}
       </div>
 
-      <div>
+      <div className="mt-6">
         <RedButton onClick={onNext}>Confirm &amp; Pay</RedButton>
       </div>
     </section>
@@ -417,15 +416,15 @@ const CoTenantsSection: React.FC<{ sample: SampleDataType; onNext: () => void; o
     <section>
       <SectionHeader title="Manage Rent Split" onBack={onBack} />
 
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-2 px-1">
         <div className="text-sm text-gray-700">Total Rent</div>
         <div className="text-sm font-medium text-gray-900">{sample.totalRent}</div>
       </div>
 
-      <div className="text-sm font-medium text-gray-700 mb-2">Tenants in Agreements</div>
+      <div className="text-sm font-medium text-gray-700 mb-2 px-1">Tenants in Agreements</div>
 
       {/* Tenants box with subtle red border */}
-      <div className="bg-white rounded-lg border border-red-200 p-4 mb-6">
+      <div className="bg-white rounded-md border border-red-200 px-4 py-3 mb-5">
         {sample.coTenants.map((t, idx) => (
           <div key={t.id} className={`${idx > 0 ? "border-t border-gray-100 mt-3 pt-3" : ""} flex items-start justify-between`}>
             <div className="flex items-start gap-4">
@@ -463,7 +462,7 @@ const CoTenantsSection: React.FC<{ sample: SampleDataType; onNext: () => void; o
         ))}
       </div>
 
-      <div className="bg-white rounded-md border border-gray-100 p-4 mb-6">
+      <div className="bg-white rounded-md border border-gray-200 px-5 py-3 mb-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
            <IconBubble size={44}>
@@ -475,7 +474,7 @@ const CoTenantsSection: React.FC<{ sample: SampleDataType; onNext: () => void; o
         </div>
       </div>
 
-      <div>
+      <div className="mt-6">
         <RedButton onClick={onNext}>Pay My Share</RedButton>
       </div>
     </section>
@@ -487,7 +486,7 @@ const SecurityDepositSection: React.FC<{ sample: SampleDataType; onNext: () => v
     <section>
       <SectionHeader title="Security Deposit" onBack={onBack} />
 
-      <div className="mb-4">
+      <div className="mb-3 px-1">
         <div className="text-sm text-gray-700">
           Total Deposit: <span className="font-medium">{sample.depositTotal}</span>
         </div>
@@ -505,7 +504,7 @@ const SecurityDepositSection: React.FC<{ sample: SampleDataType; onNext: () => v
         </div>
       </div>
 
-      <div className="bg-white rounded-md border border-gray-100 p-5 mb-4">
+      <div className="bg-white rounded-md border border-gray-200 px-5 py-4 mb-4">
         <div className="text-sm font-medium text-gray-700 mb-3">Deductions</div>
         {sample.depositItems.map((it) => (
           <div key={it.id} className="flex justify-between text-gray-700 py-2">
@@ -515,7 +514,7 @@ const SecurityDepositSection: React.FC<{ sample: SampleDataType; onNext: () => v
         ))}
       </div>
 
-      <div className="border-t border-gray-100 pt-4 mb-6">
+      <div className="border-t border-gray-200 pt-3 mb-5">
         <div className="text-lg font-semibold">
           Total Refundable: <span className="ml-2 font-medium">{sample.depositRefundable}</span>
         </div>
@@ -524,7 +523,7 @@ const SecurityDepositSection: React.FC<{ sample: SampleDataType; onNext: () => v
         </div>
       </div>
 
-      <div>
+      <div className="mt-6">
         <RedButton onClick={onNext}>Back</RedButton>
       </div>
     </section>
