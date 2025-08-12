@@ -137,22 +137,17 @@ const Toggle: React.FC<{ checked?: boolean; onChange?: (v: boolean) => void; var
 };
 
 const SectionHeader: React.FC<{ title: string; onBack?: () => void }> = ({ title, onBack }) => (
-  <div className="mb-6">
-    <div className="grid grid-cols-3 items-center">
-      <div className="flex items-center">
-        <button
-          onClick={onBack}
-          type="button"
-          aria-label="back"
-          className="w-9 h-9 flex items-center justify-center bg-white border border-gray-200 text-gray-600 rounded-sm"
-        >
-          <ChevronLeft size={16} />
-        </button>
-      </div>
-      <div className="flex justify-center">
-        <h3 className="text-2xl md:text-3xl font-semibold">{title}</h3>
-      </div>
-      <div />
+  <div className="mb-6 relative">
+    <button
+      onClick={onBack}
+      type="button"
+      aria-label="back"
+      className="absolute left-0 top-1 w-9 h-9 flex items-center justify-center bg-white border border-gray-300 text-gray-700 rounded-sm shadow-sm"
+    >
+      <ChevronLeft size={18} />
+    </button>
+    <div className="flex justify-center">
+      <h3 className="text-[22px] md:text-[26px] font-semibold tracking-tight">{title}</h3>
     </div>
   </div>
 );
@@ -228,10 +223,10 @@ const AutoPaySection: React.FC<{ sample: SampleDataType; onNext: () => void; onB
       <SectionHeader title="Set Auto Pay" onBack={onBack} />
 
       {/* Transaction */}
-      <div className="bg-white rounded-lg border border-gray-100 p-6 mb-6">
-        <div className="text-sm font-medium text-gray-600 mb-3">Transaction</div>
+      <div className="bg-white rounded-lg border border-gray-200 p-5 mb-6">
+        <div className="text-[13px] font-medium text-gray-600 mb-3">Transaction</div>
 
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="w-[54px] h-[66px] bg-black rounded-[6px] text-white flex flex-col items-center justify-center">
               <div className="text-lg font-bold leading-none">{day}</div>
@@ -239,22 +234,22 @@ const AutoPaySection: React.FC<{ sample: SampleDataType; onNext: () => void; onB
             </div>
 
             <div>
-              <div className="text-sm text-gray-700">Rent Amount</div>
+              <div className="text-[13px] text-gray-700">Rent Amount</div>
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-semibold text-red-600">{sample.rentAmount}</span>
-                <span className="text-sm font-medium text-gray-700">{sample.rentCycle}</span>
+                <span className="text-[22px] font-semibold text-red-600">{sample.rentAmount}</span>
+                <span className="text-[13px] font-medium text-gray-700">{sample.rentCycle}</span>
               </div>
-              <div className="text-sm text-gray-600 mt-1">Due Date • {sample.dueDayText}</div>
+              <div className="text-[13px] text-gray-600 mt-1">Due Date • {sample.dueDayText}</div>
             </div>
           </div>
 
           <div className="md:text-right">
-            <div className="text-sm text-gray-700">Payment Method</div>
+            <div className="text-[13px] text-gray-700">Payment Method</div>
             <div className="flex items-center justify-end gap-3 mt-2">
               <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="mc" className="w-10 h-10 object-contain" />
-              <div className="text-sm text-gray-800">
+              <div className="text-[13px] text-gray-800 leading-tight">
                 <div className="font-medium">{sample.autoPayMethodLabel}</div>
-                <div className="text-sm text-gray-500">{sample.cardMasked}</div>
+                <div className="text-[12px] text-gray-500">{sample.cardMasked}</div>
               </div>
             </div>
           </div>
@@ -262,8 +257,8 @@ const AutoPaySection: React.FC<{ sample: SampleDataType; onNext: () => void; onB
       </div>
 
       {/* Permission */}
-      <div className="bg-white rounded-md border border-gray-100 p-4 mb-4">
-        <div className="text-sm font-medium text-gray-600 mb-2">Permission</div>
+      <div className="bg-white rounded-md border border-gray-200 p-4 mb-4">
+        <div className="text-[13px] font-medium text-gray-600 mb-2">Permission</div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <IconBubble size={44}>
@@ -276,8 +271,8 @@ const AutoPaySection: React.FC<{ sample: SampleDataType; onNext: () => void; onB
       </div>
 
       {/* Payment Reminders */}
-      <div className="bg-white rounded-md border border-gray-100 p-4 mb-4">
-        <div className="text-sm font-medium text-gray-600 mb-2">Payment Reminders</div>
+      <div className="bg-white rounded-md border border-gray-200 p-4 mb-4">
+        <div className="text-[13px] font-medium text-gray-600 mb-2">Payment Reminders</div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <IconBubble size={44}>
@@ -290,8 +285,8 @@ const AutoPaySection: React.FC<{ sample: SampleDataType; onNext: () => void; onB
       </div>
 
       {/* Notification Options */}
-      <div className="bg-white rounded-md border border-gray-100 p-4 mb-6">
-        <div className="text-sm font-medium text-gray-600 mb-2">Notification Options</div>
+      <div className="bg-white rounded-md border border-gray-200 p-5 mb-6">
+        <div className="text-[13px] font-medium text-gray-600 mb-2">Notification Options</div>
 
         <div className="space-y-4">
           <div className="flex items-center justify-between">
@@ -360,13 +355,13 @@ const PayMyShareSection: React.FC<{
       <div className="text-sm text-gray-700 mb-2">Rent Payment</div>
 
       {/* My Share pill */}
-      <div className="bg-white rounded-md border border-red-200 p-2 mb-6">
-        <div className="flex items-center justify-between px-2 py-2 rounded-md border border-red-200">
+      <div className="bg-white rounded-md border border-red-300 p-2 mb-6">
+        <div className="flex items-center justify-between px-3 py-2 rounded-md border border-red-300">
           <div className="flex items-center gap-3">
             {primaryTenant?.avatarUrl ? (
               <img src={primaryTenant.avatarUrl} alt={primaryTenant.name} className="w-8 h-8 rounded-full object-cover" />
             ) : (
-              <div className="w-8 h-8 rounded-full bg-red-50 text-red-600 flex items-center justify-center text-sm font-semibold">
+              <div className="w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center text-[12px] font-semibold">
                 {primaryTenant?.initial ?? "T"}
               </div>
             )}
@@ -376,11 +371,11 @@ const PayMyShareSection: React.FC<{
         </div>
       </div>
 
-      <div className="text-sm font-semibold text-gray-800 mb-3">Select Payment Method</div>
+      <div className="text-[14px] font-semibold text-gray-800 mb-3">Select Payment Method</div>
 
-      <div className="bg-white rounded-md border border-gray-200 mb-5">
+      <div className="bg-white rounded-md border border-gray-200 mb-5 divide-y divide-gray-100">
         {paymentMethods.map((m, i) => (
-          <div key={m.id} className={`${i > 0 ? "border-t border-gray-100" : ""}`}>
+                      <div key={m.id}>
             <div
               onClick={() => choose(m.id)}
               className="flex items-center justify-between p-4 cursor-pointer"
@@ -389,7 +384,7 @@ const PayMyShareSection: React.FC<{
                 <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: ICON_BG }}>
                   {m.icon}
                 </div>
-                <div className="text-base text-gray-800 font-medium">{m.label}</div>
+                <div className="text-[15px] text-gray-800 font-medium">{m.label}</div>
               </div>
 
               {/* radio: circle with small green dot when selected */}
@@ -422,10 +417,10 @@ const CoTenantsSection: React.FC<{ sample: SampleDataType; onNext: () => void; o
         <div className="text-sm font-medium text-gray-900">{sample.totalRent}</div>
       </div>
 
-      <div className="text-sm font-medium text-gray-700 mb-2">Tenants in Agreements</div>
+      <div className="text-[13px] font-medium text-gray-700 mb-2">Tenants in Agreements</div>
 
       {/* Tenants box with subtle red border */}
-      <div className="bg-white rounded-lg border border-red-200 p-4 mb-6">
+      <div className="bg-white rounded-lg border border-red-300 p-4 mb-6">
         {sample.coTenants.map((t, idx) => (
           <div key={t.id} className={`${idx > 0 ? "border-t border-gray-100 mt-3 pt-3" : ""} flex items-start justify-between`}>
             <div className="flex items-start gap-4">
@@ -433,7 +428,7 @@ const CoTenantsSection: React.FC<{ sample: SampleDataType; onNext: () => void; o
               {t.avatarUrl ? (
                 <img src={t.avatarUrl} alt={t.name} className="w-12 h-12 rounded-full object-cover" />
               ) : (
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center font-semibold ${t.status === "Paid" ? "bg-green-50 text-green-600" : "bg-red-50 text-red-600"}`}>
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center font-semibold ${t.status === "Paid" ? "bg-green-50 text-green-600" : "bg-red-100 text-red-700"}`}>
                   {t.initial}
                 </div>
               )}
@@ -463,7 +458,7 @@ const CoTenantsSection: React.FC<{ sample: SampleDataType; onNext: () => void; o
         ))}
       </div>
 
-      <div className="bg-white rounded-md border border-gray-100 p-4 mb-6">
+      <div className="bg-white rounded-md border border-gray-200 p-4 mb-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <IconBubble size={44}>
@@ -488,10 +483,10 @@ const SecurityDepositSection: React.FC<{ sample: SampleDataType; onNext: () => v
       <SectionHeader title="Security Deposit" onBack={onBack} />
 
       <div className="mb-4">
-        <div className="text-sm text-gray-700">
+        <div className="text-[13px] text-gray-700">
           Total Deposit: <span className="font-medium">{sample.depositTotal}</span>
         </div>
-        <div className="text-sm text-gray-700 mt-1">
+        <div className="text-[13px] text-gray-700 mt-1">
           Refund Status: {" "}
           {sample.refundStatus === "Pending" ? (
             <span className="inline-flex items-center px-3 py-1 rounded-md text-sm font-medium" style={{ background: RED, color: "#fff" }}>
@@ -505,7 +500,7 @@ const SecurityDepositSection: React.FC<{ sample: SampleDataType; onNext: () => v
         </div>
       </div>
 
-      <div className="bg-white rounded-md border border-gray-100 p-5 mb-4">
+      <div className="bg-white rounded-md border border-gray-200 p-5 mb-4">
         <div className="text-sm font-medium text-gray-700 mb-3">Deductions</div>
         {sample.depositItems.map((it) => (
           <div key={it.id} className="flex justify-between text-gray-700 py-2">
