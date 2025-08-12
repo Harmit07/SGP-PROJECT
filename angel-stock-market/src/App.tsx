@@ -8,12 +8,24 @@ import Testimonials from './components/Testimonials';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import LoginModal from './components/LoginModal';
+import TenantPayment from './components/TenantPayment';
 
 function App() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const openLoginModal = () => setIsLoginModalOpen(true);
   const closeLoginModal = () => setIsLoginModalOpen(false);
+
+  const showTenantPayment =
+    typeof window !== 'undefined' && (window.location.hash.includes('tenant') || window.location.search.includes('tenant'));
+
+  if (showTenantPayment) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <TenantPayment />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
