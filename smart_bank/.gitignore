@@ -1,0 +1,11 @@
+.DS_Store
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.idea/
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+functions/lib/
+functions/node_modules/
